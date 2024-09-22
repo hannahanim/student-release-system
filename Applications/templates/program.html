@@ -1,0 +1,229 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>KPMB Program</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url("{%static 'background.jpg'%}");
+            text-align: justify;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgb(107, 188, 226); 
+            padding: 15px;
+            padding-bottom: 30px;
+            padding-top: 7px;
+            font-size: 27px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;     
+        }
+
+        section {
+            margin-left: 90px;
+            margin-right: 90px;
+            padding: 20px; /* Add padding for better visualization */
+            margin-top: 70px;
+            margin-bottom: 100px;
+        }
+
+        .header-container{
+            display: flex;  
+            align-items: center; /* Align items vertically in center */  
+            margin-left: 25%;
+        }
+
+        .header-img {
+            margin-left: 15px; /* Push the image to the right */
+        }
+
+        img {
+            text-align: left;
+            padding-top: 5px;
+            padding-right: 10px;
+        }
+
+        .navbar-container {
+            position: absolute;
+            top: 70px;
+            left: 45%;
+            transform: translateX(-50%);
+            width: 75%;
+            padding-top: 70px;
+            z-index: 2;
+        }
+
+        .navbar {
+            background-color: #1976D2;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            width: 60%;
+            left: 70%;
+            margin-left: 100px;
+            border-radius: 3px;
+        }
+
+        .navbar a {
+            color: #FFFFFF;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #0F52BA;
+        }
+
+        .navbar a.active {
+            background-color: #0F52BA;
+        }
+
+        .login {
+            position: absolute;
+            right: 0;
+            width: 13%;
+            height: 35%;
+            margin-top: 10px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            border-radius: 5px;
+        }
+
+        .login a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .container-1 {
+            justify-content: center;
+            margin: 0 auto;
+            height: 100%;
+            position: relative;
+            background-color: #E1F5FE;
+            padding-right: 15px;
+            padding-left: 30px;
+            padding-bottom: 50px;
+            padding-top: 30px;
+            box-shadow: 10px 7px 10px 7px lightblue;
+        }
+
+        .container-1 img {
+            width:95%;
+            margin: 18px;
+        }
+
+        .container-1 h2{
+            color: rgb(255, 255, 255);
+            text-shadow: 3px 2px 6px rgb(0, 0, 0); 
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            font-size: 37px;
+            text-align: center;
+        }
+
+        footer {
+            background-color: rgb(12, 65, 89);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 97%;
+            bottom: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .fa {
+            color: white;
+            margin-right: 5px;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>KPMB Release Voyage</h1>
+            <img class="header-img" src="{% static 'leave.png' %}" alt="leave" height="90px" width="90px">
+        </div>
+    </header>
+
+    <div class="navbar-container">
+        <div class="login">
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+
+        <div class="navbar">
+            <span style="padding-right: 170px;;"><img src="{%static 'kpm.png'%}" alt="KPMB Logo" width="40px" height="40px">
+            <img src="{%static 'mara.png'%}" alt="Mara Logo" width="40px" height="40px"></span>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'program' %}">Program</a>
+        </div>
+    </div>
+
+    <section style="background-color: #E1F5FE;">
+        <div class="container-1">
+            <h2>KPMB PROGRAMS</h2>
+            <hr>
+            <img src="{%static 'program.jpg'%}" alt="program">
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 KPMB Release Voyage. All rights reserved.</p>
+            <ul class="social-icons">
+                <li><a href="https://web.facebook.com/KPMBERANANGSELANGOR" class="fa fa-facebook">  Facebook</a></li>
+                <li><a href="https://beranang.kpm.edu.my/kpmb/index.php" class="fa fa-google">  Google</a></li>
+                <li><a href="https://www.instagram.com/mppkpmb/?hl=en" class="fa fa-instagram">  MPP</a></li>
+            </ul>
+        </div>
+    </footer>
+    
+</body>
+</html>

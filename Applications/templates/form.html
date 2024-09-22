@@ -1,0 +1,377 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Release Form</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url("{%static 'background.jpg'%}");
+            text-align: justify;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgb(107, 188, 226); 
+            padding: 15px;
+            padding-bottom: 30px;
+            padding-top: 7px;
+            color: white; /* Keep only one definition */
+            font-size: 27px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1; 
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-shadow: 2px 2px 4px #000000; /* Keep only one definition */
+        }
+
+        section {
+            margin-left: 150px;
+            margin-right: 150px;
+            padding: 60px; 
+            margin-top: 70px;
+            margin-bottom: 150px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-left: 25%;
+        }
+
+        .header-img {
+            margin-left: 15px;
+        }
+
+        img {
+            text-align: left;
+            padding-top: 5px;
+            padding-right: 10px;
+        }
+
+        .navbar-container {
+            position: absolute;
+            top: 70px;
+            left: 45%;
+            transform: translateX(-50%);
+            width: 75%;
+            padding-top: 70px;
+            z-index: 2;
+        }
+
+        .navbar {
+            background-color: #1976D2;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            width: 60%;
+            left: 50%;
+            margin-left: 100px;
+            border-radius: 3px;
+        }
+
+        .navbar a {
+            color: #FFFFFF;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #0F52BA;
+        }
+
+        .navbar a.active {
+            background-color: #0F52BA;
+        }
+
+        .back {
+            position: absolute;
+            right: 0;
+            width: 13%;
+            height: 35%;
+            margin-top: 10px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            border-radius: 5px;
+        }
+
+        .back a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+        
+        .container-1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            height: 100%;
+            position: relative;
+            background-color: #E1F5FE;
+            padding-bottom: 50px;
+            box-shadow: 10px 7px 10px 7px lightblue;
+        }
+
+        .container-1 h2 {
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            text-align: center; 
+            padding-top: 20px; 
+            color: #006400; 
+            text-shadow: 2px 2px 4px #efe6e6;
+            font-size: 30px;
+        }
+
+        /* .student-box {
+            display: flex;
+            justify-content: center;
+            margin-top: 60px;
+            margin-bottom: -20px;
+        }
+
+        .student-info {
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding-right: 40px;
+            padding-left: 35px;
+        }
+
+        .student-info img {
+            margin-right: 5px;
+        } */
+
+        form {
+            font-family: 'Arial', sans-serif;
+            width: 90%;
+            margin-top: 20px;
+            padding-left: 20px;
+            padding-right: 14px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        input[type="submit"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Wider input for long sentences */
+        .wide-input {
+            width: calc(100% - 20px);
+        }
+
+        textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 3px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+            resize: vertical;
+        }
+
+        input[type="submit"] {
+            background-color: green;
+            color: white;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: darkgreen;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        hr {
+            margin-top: -8px;
+            margin-bottom: 40px;
+        }
+
+        .popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            display: none;
+            z-index: 9999;
+        }
+
+        footer {
+            background-color: rgb(12, 65, 89);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 97%;
+            bottom: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+
+        .fa {
+            color: white;
+            margin-right: 5px;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>KPMB Release Voyage</h1>
+            <img class="header-img" src="{% static 'leave.png' %}" alt="leave" height="90px" width="90px">
+        </div>
+    </header>
+
+    <div class="navbar-container">
+        <div class="back">
+            <a href="{% url 'student_page' %}">Back</a>
+        </div>
+
+        <div class="navbar">
+            <span style="padding-right: 170px;"><img src="{% static 'kpm.png' %}" alt="KPMB Logo" width="40px"
+                    height="40px">
+                <img src="{% static 'mara.png' %}" alt="Mara Logo" width="40px" height="40px"></span>
+                <a href="{% url 'index' %}">Home</a>
+                <a href="{% url 'program' %}">Program</a>
+            </div>
+    </div>
+
+    <section style="background-color: #E1F5FE;">
+        <div class="container-1">
+            <h2>Special Release Form</h2>
+            <form action="" method="post">
+                <hr>
+                {% csrf_token %}
+                {% with student=mystudent.first %}
+                <label for="student_id">Student ID for {{ student.name }}:</label>
+                <input type="text" id="student_id" name="student_id" value="{{ student.id }}" required>
+                {% endwith %}
+
+                <label for="date_start">Date Start:</label>
+                <input type="date" id="date_start" name="date_start" required>
+
+                <label for="date_finish">Date Finish:</label>
+                <input type="date" id="date_finish" name="date_finish" required>
+
+                <label for="total_leave">Total Leave (Days):</label>
+                <input type="text" id="total_leave" name="total_leave" required>
+
+                <label for="reason">Reason:</label>
+                <textarea id="reason" name="reason" class="wide-input" required></textarea>
+
+                <label for="place">Place:</label>
+                <input type="text" id="place" name="place" required>
+
+                <label for="classestobemissed">Classes To Be Missed:</label>
+                <textarea id="classestobemissed" name="classestobemissed" class="wide-input" required></textarea>
+
+                <input type="submit" value="SUBMIT">
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 KPMB Release Voyage. All rights reserved.</p>
+            <ul class="social-icons">
+                <li><a href="https://web.facebook.com/KPMBERANANGSELANGOR" class="fa fa-facebook">  Facebook</a></li>
+                <li><a href="https://beranang.kpm.edu.my/kpmb/index.php" class="fa fa-google">  Google</a></li>
+                <li><a href="https://www.instagram.com/mppkpmb/?hl=en" class="fa fa-instagram">  MPP</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div id="popup-message" class="popup"></div>
+
+    <script>
+        // Function to show the popup message
+        function showPopupMessage(message) {
+            var popup = document.getElementById('popup-message');
+            popup.innerText = message;
+            popup.style.display = 'block'; // Show the popup
+            setTimeout(function () {
+                popup.style.display = 'none'; // Hide the popup after 3 seconds
+            }, 3000);
+        }
+
+        // Check if URL contains success parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        const successParam = urlParams.get('success');
+
+        // If success parameter is present and true, show the success popup message
+        if (successParam && successParam.toLowerCase() === 'true') {
+            showPopupMessage('Successfully Submit Special Release Form');
+        } else if (successParam && successParam.toLowerCase() === 'false') {
+            showPopupMessage('Invalid input, please try again!');
+        }
+    </script>
+</body>
+
+</html>

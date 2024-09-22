@@ -1,0 +1,500 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Admin Page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            background-image: url("{%static 'background.jpg'%}");
+            text-align: justify;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: rgb(107, 188, 226);
+            padding: 15px;
+            padding-bottom: 30px;
+            padding-top: 7px;
+            font-size: 27px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color: white;
+            text-shadow: 2px 2px 4px #000000;
+        }
+
+        section {
+            margin-left: 90px;
+            margin-right: 80px;
+            padding: 20px;
+            margin-top: 70px;
+            margin-bottom: 150px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-left: 25%;
+        }
+
+        .header-img {
+            margin-left: 15px;
+        }
+
+        .header-container {
+            display: flex;
+            align-items: center;
+            margin-left: 25%;
+        }
+
+        .header-img {
+            margin-left: 15px;
+        }
+
+        img {
+            text-align: left;
+            padding-top: 5px;
+            padding-right: 10px;
+        }
+
+        .navbar-container {
+            position: absolute;
+            top: 70px;
+            left: 45%;
+            transform: translateX(-50%);
+            width: 75%;
+            padding-top: 70px;
+            z-index: 2;
+        }
+
+        .navbar {
+            background-color: #1976D2;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            width: 60%;
+            left: 50%;
+            margin-left: 100px;
+            border-radius: 3px;
+        }
+
+        .navbar a {
+            color: #FFFFFF;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        .navbar a:hover {
+            background-color: #0F52BA;
+        }
+
+        .navbar a.active {
+            background-color: #0F52BA;
+        }
+
+        .logout {
+            position: absolute;
+            right: 0;
+            width: 13%;
+            height: 35%;
+            margin-top: 10px;
+            background-color: #333;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 10px 10px 5px lightblue;
+            border-radius: 5px;
+        }
+
+        .logout a {
+            color: #fff;
+            text-decoration: none;
+            padding: 14px 20px;
+        }
+
+        .admin-box {
+            display: flex;
+            justify-content: center;
+            /* Center the box horizontally */
+            margin-top: 60px;
+            margin-bottom: -20px;
+        }
+
+        .admin-info {
+            background-color: #FFF;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 10px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            padding-right: 40px;
+            padding-left: 35px;
+        }
+
+        .admin-info img {
+            margin-right: 5px;
+        }
+
+        .container-1 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 0 auto;
+            height: 100%;
+            position: relative;
+            background-color: #E1F5FE;
+            padding-right: 15px;
+            padding-left: 30px;
+            padding-bottom: 50px;
+            box-shadow: 10px 7px 10px 7px lightblue;
+        }
+
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 95%;
+            border: 3px solid;
+            margin-top: 50px;
+            font-size: 13px;
+        }
+
+        td,
+        th {
+            border: 3px solid #1976D2;
+            /* Adjusted border color */
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: rgb(30, 126, 210);
+            color: #FFFFFF;
+            /* Text color for table header */
+        }
+
+        .container-1 {
+            position: static;
+            justify-content: center;
+            margin: 0 auto;
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .search-container {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .search-box {
+            padding: 10px 30px 10px 10px;
+            /* Adjust the padding to move the icon to the left */
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 300px;
+            max-width: 100%;
+            cursor: pointer;
+        }
+
+        .search-button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            animation: fadein 0.5s, fadeout 0.5s 1.5s forwards;
+        }
+
+        @keyframes fadein {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fadeout {
+            from {
+                opacity: 1;
+            }
+
+            to {
+                opacity: 0;
+            }
+        }
+
+        .show {
+            display: block;
+        }
+
+        footer {
+            background-color: rgb(12, 65, 89);
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            width: 97%;
+            bottom: 0;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+
+        .social-icons {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .social-icons li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .social-icons a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+
+        .fa {
+            color: white;
+            margin-right: 5px;
+        }
+
+        .fa:hover {
+            opacity: 0.7;
+        }
+
+        .update-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: green;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .update-button:hover {
+            background-color: darkgreen;
+        }
+
+        .delete-button {
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: red;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .delete-button:hover {
+            background-color: darkred;
+        }
+
+        th.no-border {
+            border: none;
+            border-top: none; /* Remove all borders */
+            border-right: none; /* Remove bottom border */
+        }
+
+        .profile-link {
+    background-color: #808080; /* Grey color */
+    color: white; /* Button text color */
+    text-decoration: none; /* Remove underline */
+    padding: 8px 16px; /* Padding for the button */
+    border-radius: 5px; /* Rounded corners */
+    display: inline-block; /* Display as block element */
+    margin-top: 5px; /* Adjust spacing */
+    font-size: 14px; /* Smaller font size */
+}
+
+.profile-link:hover {
+    background-color: #696969; /* Darker grey color on hover */
+}
+
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>KPMB Release Voyage</h1>
+            <img class="header-img" src="{% static 'leave.png' %}" alt="leave" height="90px" width="90px">
+        </div>
+    </header>
+
+
+    <div class="navbar-container">
+        <div class="logout">
+            <a href="{% url 'index' %}">logout</a>
+        </div>
+
+        <div class="navbar">
+            <span style="padding-right: 170px;"><img src="{%static 'kpm.png'%}" alt="KPMB Logo" width="40px"
+                    height="40px">
+                <img src="{%static 'mara.png'%}" alt="Mara Logo" width="40px" height="40px"></span>
+            <a href="{% url 'index' %}">Home</a>
+            <a href="{% url 'program' %}">Program</a>
+        </div>
+    </div>
+
+    <div class="admin-box">
+        <div class="admin-info">
+            <img src="{% static 'administrator.png' %}" alt="Admin Image" width="100" height="100">
+            <div>
+                <h2>Hi ADMIN,</h2>
+                <h3>{{ admin.admin_name }}</h3>
+                <a href="{% url 'adminprofile' admin.admin_id %}" class="profile-link">View Profile</a>
+            </div>
+        </div>
+    </div>
+
+    <section style="background-color: #E1F5FE;">
+        <div class="container-1">
+            <div class="search-container">
+                <form action="{% url 'search_status' %}" method="get">
+                    {% csrf_token %}
+                    <select class="search-box" name="status">
+                        <option value="">-- Select Status --</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Disapproved">Disapproved</option>
+                    </select>
+                    <input type="submit" value="SEARCH" class="search-button">
+                </form>
+            </div>
+            <table>
+                <tr>
+                    <th>No</th>
+                    <th>Student ID</th>
+                    <th>Date Start</th>
+                    <th>Date Finish</th>
+                    <th>Total Leave (Days)</th>
+                    <th>Reason</th>
+                    <th>Place</th>
+                    <th>Status</th>
+                    <th>Classes To Be Missed</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                {% for x in applications %}
+                <tr>
+                    <td>
+                        {{ forloop.counter }}
+                    </td>
+                    <td>
+                        {{ x.student_id.student_id }}
+                    </td>
+                    <td>
+                        {{x.date_start}}
+                    </td>
+                    <td>
+                        {{x.date_finish}}
+                    </td>
+                    <td>
+                        {{x.total_leave}}
+                    </td>
+                    <td>
+                        {{x.reason}}
+                    </td>
+                    <td>
+                        {{x.place}}
+                    </td>
+                    <td>
+                        {{x.status}}
+                    </td>
+                    <td>
+                        {{x.classestobemissed}}
+                    </td>
+                    <td>
+                        <a href="{% url 'update' x.id %}" class="update-button">UPDATE</a>
+                    </td>
+                    <td>
+                        <a href="{% url 'viewdelete' x.id %}" class="delete-button">DELETE</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-container">
+            <p>&copy; 2024 KPMB Release Voyage. All rights reserved.</p>
+            <ul class="social-icons">
+                <li><a href="https://web.facebook.com/KPMBERANANGSELANGOR" class="fa fa-facebook"> Facebook</a></li>
+                <li><a href="https://beranang.kpm.edu.my/kpmb/index.php" class="fa fa-google"> Google</a></li>
+                <li><a href="https://www.instagram.com/mppkpmb/?hl=en" class="fa fa-instagram"> MPP</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <div id="popup-message" class="popup-message"></div>
+
+    <script>
+        window.onload = function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var loginMessage = urlParams.get('login_message');
+            var deleteMessage = urlParams.get('delete_message');
+            var popup = document.getElementById('popup-message');
+    
+            if (loginMessage === 'success') {
+                popup.textContent = "Successfully Logged In";
+            } else if (loginMessage === 'error') {
+                popup.textContent = "Invalid Username or Password";
+            } else if (deleteMessage === 'success') {
+                popup.textContent = "Successfully Deleted";
+            }
+    
+            if (loginMessage || deleteMessage) {
+                popup.classList.add('show');
+                setTimeout(function () {
+                    popup.classList.remove('show');
+                }, 2000); // Set the popup display time to 2 seconds
+            }
+        };
+    </script>
+
+</body>
+
+</html>
